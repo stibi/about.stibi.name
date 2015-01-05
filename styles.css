@@ -4,13 +4,13 @@ html, body{
     padding: 0px;
 }
 
-#horni {
+#up {
     width: 100%;
     height: 50%;
     background-color: #2D5F6C;
 }
 
-#dolni {
+#down {
     width: 100%;
     height: 50%;
     background-color: #343838;
@@ -19,7 +19,7 @@ html, body{
     border-color: #E1EAEB;
 }
 
-#horni #me {
+#up #me {
     padding: 0px;
     margin: 0px;
     color: #E1EAEB;
@@ -31,4 +31,71 @@ html, body{
     text-align: center;
     bottom: 50.5%;
     /*line-height: 50%;*/
+}
+
+ol, ul {
+    list-style-type: none;
+}
+
+#down #icons {
+    /*width: 500px;*/
+    max-width: 500px; /* for  below IE7 use `width: 660px;` */
+    margin: 50px auto;
+    /*background-color: red;*/
+}
+
+#icons li {
+    float: left;
+    display: inline-block;
+    background-size: 64px 64px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    margin: 20px;
+    padding: 0;
+}
+
+#icons li a {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+}
+
+#si-github {
+    background-image: url("pics/github-64.png");
+    background-color: #4183C4;
+}
+
+#si-twitter {
+    background-image: url("pics/twitter-64.png");
+    background-color: #00ACED;
+}
+
+#si-googleplus {
+    background-image: url("pics/googleplus-64.png");
+    background-color: #D14836;
+}
+
+#si-instagram {
+    background-image: url("pics/instagram-64.png");
+    background-color: #3F729B;
+}
+
+#si-rss {
+    background-image: url("pics/rss-64.png");
+    background-color: #FF8300;
+}
+
+#si-linkedin {
+    background-image: url("pics/linkedin-64.png");
+    background-color: #007FB1;
+}
+
+#si-skype {
+    background-image: url("pics/skype-64.png");
+    background-color: #00AFF0;
+}
+
+#si-gmail {
+    background-image: url("pics/gmail-64.png");
+    background-color: #DD4B39;
 }
