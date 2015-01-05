@@ -1,0 +1,34 @@
+html, body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+#horni {
+    width: 100%;
+    height: 50%;
+    background-color: #2D5F6C;
+}
+
+#dolni {
+    width: 100%;
+    height: 50%;
+    background-color: #343838;
+    border-style: solid none none none;
+    border-width: 5px;
+    border-color: #E1EAEB;
+}
+
+#horni #me {
+    padding: 0px;
+    margin: 0px;
+    color: #E1EAEB;
+    font-size: 35px;
+    font-family: 'Oxygen', Verdana;
+    letter-spacing: 2px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 50.5%;
+    /*line-height: 50%;*/
+}
