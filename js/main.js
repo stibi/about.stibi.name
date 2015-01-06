@@ -2,27 +2,26 @@ $(function() {
 
     var upElement = $("#up");
 
-    function gimeRandomPosition() {
-        var posx = (Math.random() * (upElement.width() - 150)).toFixed();
-        var posy = (Math.random() * (upElement.height() - 20)).toFixed();
+    function gimeRandomPosition(elementWidth, elementHeight) {
+        var posx = (Math.random() * (upElement.width() - elementWidth)).toFixed();
+        var posy = (Math.random() * (upElement.height() - elementHeight)).toFixed();
         // TODO return as object
         return [posx, posy];
     }
 
-    function checkCollision(posx, posy, callback) {
-        randomElemLeft = parseInt(posx);
-        randomElemTop = parseInt(posy);
-        randomElemeWidth = 150;
-        randomElemHeigt = 20;
+    function checkCollision(hashtagDiv) {
+
+        newdivSize = hashtagDiv.getDivSize();
+        randomPosition = gimeRandomPosition(newdivSize[0], newdivSize[1]);
+        hashtagDiv.posx = randomPosition[0];
+        hashtagDiv.posy = randomPosition[1];
+
+        randomElemLeft = parseInt(randomPosition[0]);
+        randomElemTop = parseInt(randomPosition[1]);
+        randomElemeWidth = newdivSize[0];
+        randomElemHeigt = newdivSize[1];
         randomElemFarY = randomElemTop + randomElemHeigt;
         randomElemFarX = randomElemLeft + randomElemeWidth;
-
-        // pokud tam jeste zadny neni, tak ho tam rovnou prdni
-        var hashtagsLen = $('div.hashtag').length
-        if (hashtagsLen === 0) {
-            callback(posx, posy, "weeeee");
-            return;
-        }
 
         var col;
 
@@ -48,26 +47,52 @@ $(function() {
 
         if (col) {
             console.log("collision detected!");
-            var newPosition = gimeRandomPosition();
-            checkCollision(newPosition[0], newPosition[1], callback);
+            checkCollision(hashtagDiv);
         } else {
             console.log("good, div created");
-            callback(posx, posy, "weeeee");
+            hashtagDiv.createDiv();
         }
     }
 
-    function createDiv(posx, posy, textValue) {
-        var color = '#'+ Math.round(0xffffff * Math.random()).toString(16);
+    function HashTagDiv(textValue) {
+        this.posx;
+        this.posy;
+        this.textValue = textValue;
+        this.div = $("<div/>");
+        this.div.css({
+            "position" : "absolute",
+            "display" : "none"
+        })
+        this.div.addClass("hashtag");
+        this.divp = $('</p>').text(textValue);
+        this.divp.appendTo(this.div);
+        this.div.appendTo(upElement);
+    }
+
+    HashTagDiv.prototype.createDiv = function() {
+        this.div.css({
+            "left" : this.posx+"px",
+            "top" : this.posy+"px",
+            "display" : "block"
+        });
+    }
+
+    HashTagDiv.prototype.getDivSize = function() {
+        var hashTagDivWidth = $(this.div).outerWidth(true);
+        var hashTagDivHeight = $(this.div).outerHeight(true);
+        return [hashTagDivWidth, hashTagDivHeight]
+    }
+
+    function createDiv2(posx, posy) {
+        //var color = '#'+ Math.round(0xffffff * Math.random()).toString(16);
         $newdiv = $('<div/>');
         $newdiv.css({
             'position':'absolute',
             'left': posx+'px',
             'top': posy+'px',
-            'width': '150px',
-            'height': '20px',
-            'background-color': color
+            'z-index' : 2
         }).addClass("hashtag");
-            $newp = $('</p>').text(textValue + " x=" + posx + "y=" + posy);
+            $newp = $('</p>').text(this.textValue);
             $newp.css({
                 'margin' : '0',
                 'padding' : '0'
@@ -77,13 +102,11 @@ $(function() {
     }
 
     (function makeDiv() {
-        //var divsize = ((Math.random()*100) + 50).toFixed();
-
-        var hashtagy = [ "prvni", "druhy", "treti", "ctvrty", "paty", "sesty", "sedmy", "osmy", "devaty", "desaty", "jedenacty", "dvanacty", "trinacty", "ctrnacty", "patnacty", "sestnacty", "sedmnacty", "osmncaty", "devatenacty", "dvacaty" ];
+        var hashtagy = [ "#linux", "#zsh", "#java", "#python", "#ansible", "#raspberrypi", "#ansible", "#devops", "#android", "#space", "#google", "#github", "#archlinux", "#iot", "#agile", "#bash", "#travelling", "#ostrava", "#CZ", "#books", "#git" ];
 
         $.each(hashtagy, function( index, value ) {
-            var randomPos = gimeRandomPosition();
-            checkCollision(randomPos[0], randomPos[1], createDiv);
+            var newHashtagDiv = new HashTagDiv(value);
+            checkCollision(newHashtagDiv);
         });
     })();
 });

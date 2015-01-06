@@ -6,13 +6,26 @@ html, body{
 
 #up {
     width: 100%;
-    height: 50%;
+    height: 35%;
     background-color: #2D5F6C;
+}
+
+.hashtag {
+
+}
+
+.hashtag p {
+    margin: 0;
+    padding: 0;
+    color: #E1EAEB;
+    font-family: 'Oxygen', Verdana;
+    font-size: 30px;
+    opacity: 0.3;
 }
 
 #down {
     width: 100%;
-    height: 50%;
+    height: 65%;
     background-color: #343838;
     border-style: solid none none none;
     border-width: 5px;
@@ -29,7 +42,7 @@ html, body{
     position: absolute;
     width: 100%;
     text-align: center;
-    bottom: 50.5%;
+    bottom: 65.5%;
     /*line-height: 50%;*/
 }
 
