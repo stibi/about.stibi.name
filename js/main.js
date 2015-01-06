@@ -4,7 +4,8 @@ $(function() {
 
     function gimeRandomPosition(elementWidth, elementHeight) {
         var posx = (Math.random() * (upElement.width() - elementWidth)).toFixed();
-        var posy = (Math.random() * (upElement.height() - elementHeight)).toFixed();
+        // #me height is ignored, no div placed there, 10 is margin
+        var posy = (Math.random() * (upElement.height() - elementHeight - $("#me").height() - 10)).toFixed();
         // TODO return as object
         return [posx, posy];
     }
@@ -102,7 +103,7 @@ $(function() {
     }
 
     (function makeDiv() {
-        var hashtagy = [ "#linux", "#zsh", "#java", "#python", "#ansible", "#raspberrypi", "#ansible", "#devops", "#android", "#space", "#google", "#github", "#archlinux", "#iot", "#agile", "#bash", "#travelling", "#ostrava", "#CZ", "#books", "#git" ];
+        var hashtagy = [ "#linux", "#zsh", "#java", "#python", "#ansible", "#raspberrypi", "#ansible", "#devops", "#android", "#space", "#google", "#github", "#archlinux", "#iot", "#agile", "#bash", "#travelling", "#ostrava", "#CZ", "#books", "#git", "#arduino", "#reading", "#movies", "#i3wm", "#tmux" ];
 
         $.each(hashtagy, function( index, value ) {
             var newHashtagDiv = new HashTagDiv(value);
