@@ -10,7 +10,17 @@ $(function() {
         return [posx, posy];
     }
 
-    function checkCollision(hashtagDiv) {
+    function checkCollision(hashtagDiv, inc) {
+
+        // counter with how many attempt it takes to find a fitting random position, 100 is max
+        inc += 1;
+        if (inc > 100) {
+            console.log("give up");
+            return;
+        } else {
+            // console.log("inc=" + inc);
+        }
+
 
         newdivSize = hashtagDiv.getDivSize();
         randomPosition = gimeRandomPosition(newdivSize[0], newdivSize[1]);
@@ -48,7 +58,7 @@ $(function() {
 
         if (col) {
             console.log("collision detected!");
-            checkCollision(hashtagDiv);
+            checkCollision(hashtagDiv, inc);
         } else {
             console.log("good, div created");
             hashtagDiv.createDiv();
@@ -107,7 +117,7 @@ $(function() {
 
         $.each(hashtagy, function( index, value ) {
             var newHashtagDiv = new HashTagDiv(value);
-            checkCollision(newHashtagDiv);
+            checkCollision(newHashtagDiv, 0);
         });
     })();
 });
